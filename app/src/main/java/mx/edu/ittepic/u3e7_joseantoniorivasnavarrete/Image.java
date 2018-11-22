@@ -10,8 +10,11 @@ public class Image {
     private float x,y;
     boolean visible;
 
-    public Image(int recurso, int w, int h, float px, float py, boolean v, Lienzo l){
-        imagen = Bitmap.createScaledBitmap( BitmapFactory.decodeResource( l.getResources(),recurso),w,h,true );
+    public Image(int recurso, int w, int h, float px, float py, boolean v, Lienzo0 l,Lienzo l1){
+        if (l==null)
+            imagen = Bitmap.createScaledBitmap( BitmapFactory.decodeResource( l1.getResources(),recurso),w,h,true );
+        if (l1==null)
+            imagen = Bitmap.createScaledBitmap( BitmapFactory.decodeResource( l.getResources(),recurso),w,h,true );
         x=px;
         y=py;
         visible=v;

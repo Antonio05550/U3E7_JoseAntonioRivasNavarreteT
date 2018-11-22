@@ -1,28 +1,30 @@
 package mx.edu.ittepic.u3e7_joseantoniorivasnavarrete;
 
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class Main2Activity extends AppCompatActivity {
     MediaPlayer audio;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new Lienzo0(this));
-        audio = MediaPlayer.create(this, R.raw.spaceinvaders1);
-    }
-    public  void ventana2(){
-        audio.pause();
-        Intent ventana2 = new Intent( MainActivity.this, Main2Activity.class );
-        startActivity( ventana2 );
+        setContentView(new Lienzo(this));
+        audio = MediaPlayer.create(this, R.raw.musicaf);
+        audio.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                audio.start();
+            }
+        });
     }
     public void musicaf(){
         audio.start();
     }
+    @Override
     public void onBackPressed() {
         audio.stop();
         super.onBackPressed();
     }
+
 }

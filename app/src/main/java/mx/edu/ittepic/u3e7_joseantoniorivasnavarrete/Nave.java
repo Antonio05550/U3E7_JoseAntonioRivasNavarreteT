@@ -3,6 +3,7 @@ package mx.edu.ittepic.u3e7_joseantoniorivasnavarrete;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.CountDownTimer;
 
@@ -34,8 +35,10 @@ public class Nave {
             public void onTick(long millisUntilFinished) {
                 if(tipo=="n"){
                     pyb-=des;
-                    if (visiblen)
+                    if (visiblen){
                         coalision( pxb,pyb);
+                        ganar();
+                    }
                     if (pyb<-40){
                         pyb=pyn-1;
                         pxb=pxn+nave.getWidth()/2;
@@ -65,6 +68,7 @@ public class Nave {
         timer.start();
     }
     public void pintar(Canvas c, Paint p){
+        p.setColor( Color.WHITE );
         p.setTextSize( 50);
         c.drawText( "Puntos: " + puntos,10,60,p );
         if(visiblen){
@@ -128,6 +132,10 @@ public class Nave {
             Lienzo.invasor4.visiblen=false;
             
         }
+    }
+    public void ganar(){
+        if(!Lienzo.invasor4.visiblen&&!Lienzo.invasor3.visiblen&&!Lienzo.invasor2.visiblen&&!Lienzo.invasor.visiblen)
+        Lienzo.winner.visible=true;
     }
 
 
